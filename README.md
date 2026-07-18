@@ -38,14 +38,3 @@ Portfolio/
  
 > **Note:** The `images/` folder is excluded via `.gitignore`. If cloning this repo, add your own profile photo to `images/`(or update the path in `index.html`) for the layout to render correctly.
  
-## Setup
- 
-1. Clone the repository
-2. Add a profile photo to `images/`
-3. Open `index.html` in a browser, or serve locally with a tool like Live Server
-## Contact
- 
-- Email: razaibrahim101@gmail.com
-- LinkedIn: [Muhammad Ibrahim Raza](https://www.linkedin.com/in/muhammad-ibrahim-raza-a8a5122a5/)
-- GitHub: [@MIbrahimRaza](https://github.com/MIbrahimRaza)
- 
