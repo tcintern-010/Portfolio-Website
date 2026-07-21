@@ -7,6 +7,10 @@
     font-family: 'Poppins', sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background: #1f242d;
 }
@@ -21,11 +25,20 @@ body {
     color: #7cf03d;
 }
 
-/* Navbar */
-
 a {
     color: white;
     text-decoration: none;
+}
+
+/* Navbar */
+
+.navbar .logo i {
+    transition: transform 0.3s ease;
+}
+
+.navbar .logo:hover i {
+    transform: scale(1.15);
+    color: #7cf03d;
 }
 
 .navbar {
@@ -37,18 +50,16 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: nowrap;
+    gap: 20px;
     z-index: 100;
     background: rgba(31, 36, 45, 1);
-
-}
-
-.navbar .logo {
-    font-weight: 500;
-    font-size: 30px;
 }
 
 .navbar ul {
     display: flex;
+    align-items: center;
+    flex-shrink: 0;
 }
 
 .navbar ul li {
@@ -56,19 +67,33 @@ a {
     margin-left: 35px;
 }
 
+.navbar .logo {
+    font-weight: 500;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
 .navbar ul li a {
     font-size: 20px;
     font-weight: 500;
+    white-space: nowrap;
     transition: all 0.3s ease;
 }
 
 .navbar ul li:hover a {
     color: #7cf03d;
+    text-decoration: underline;
+    text-shadow: 0 0 0.4px currentColor, 0 0 0.4px currentColor;
 }
 
 /* Home */
 
 .home {
+    margin-top: 15px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -182,7 +207,7 @@ a {
 
 
 
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
     .navbar {
         padding: 20px 5%;
     }
@@ -231,13 +256,24 @@ a {
         padding: 15px 5%;
     }
 
-    .navbar .logo {
-        font-size: 20px;
-        margin-bottom: 10px;
+    .navbar ul {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        margin-top: 10px;
+        width: 100%;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .navbar ul::-webkit-scrollbar {
+        display: none;
     }
 
     .navbar ul li {
-        margin: 0 10px;
+        margin: 0 12px;
+        flex-shrink: 0;
     }
 
     .navbar ul li a {
@@ -403,7 +439,130 @@ a {
     color: black;
 }
 
-/* Contact */
+/* Recommendations */
+
+.recommendations {
+    padding: 100px 9%;
+    color: white;
+}
+
+.recommendations-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px
+}
+
+.recommendation-box {
+    background: #262b34;
+    padding: 25px;
+    border-radius: 10px;
+    border-left: 3px solid #7cf03d;
+    transition: all 0.3s ease;
+}
+
+.recommendation-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 1);
+}
+
+.recommendation-box .rec-text {
+    font-size: 14px;
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+.recommendation-box .rec-author {
+    font-size: 14px;
+    color: #7cf03d;
+    font-weight: 500;
+}
+
+.rec-form-heading {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 25px;
+}
+
+.recommendation-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.recommendation-form input,
+.recommendation-form textarea {
+    width: 100%;
+    background: #262b34;
+    border: none;
+    outline: none;
+    padding: 14px;
+    border-radius: 6px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    resize: none;
+}
+
+.recommendation-form input:focus,
+.recommendation-form textarea:focus {
+    box-shadow: 0 0 0 2px #7cf03d;
+}
+
+.recommendation-form textarea {
+    min-height: 120px;
+}
+
+.recommendation-form button {
+    align-self: center;
+    background: #7cf03d;
+    box-shadow: 0 0 10px #7cf03d;
+    color: black;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.recommendation-form button:hover {
+    transform: translateY(-3px);
+}
+
+.popup-message {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(38, 43, 52, 0.85);
+    backdrop-filter: blur(8px);
+    color: #7cf03d;
+    padding: 15px 25px;
+    border: 1px solid #7cf03d;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 15px;
+    box-shadow: 0 0 15px rgba(124, 240, 61, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+    z-index: 999;
+}
+
+.popup-message.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Contact*/
 
 .contact {
     padding: 100px 9%;
@@ -451,10 +610,11 @@ a {
     display: flex;
     flex-direction: column;
     gap: 15px;
-} 
+}
+
 .form-row {
-    display:flex;
-    gap:15px;
+    display: flex;
+    gap: 15px;
 }
 
 .form-row input {

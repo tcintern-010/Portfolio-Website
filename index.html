@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muhammad Ibrahim | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="CSS/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 </head>
@@ -13,11 +13,12 @@
 <body>
     <header class="header">
         <nav class="navbar">
-            <a href="#home" class="logo">Portfolio</a>
+            <a href="#home" class="logo"><i class='bx bx-home-alt'></i>Muhammad Ibrahim Raza</a>
             <ul>
                 <li><a href="#home">About Me</a></li>
                 <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
+                <li><a href="#projects">Project Details</a></li>
+                <li><a href="#recommendations">Recommendations</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -45,7 +46,7 @@
             <div class="home-img">
                 <div class="img-box">
                     <div class="img-item">
-                        <img src="images/Ibrahim.jpg" alt="Muhammad Ibrahim Raza">
+                        <img src="assets/images/Ibrahim.jpg" alt="Muhammad Ibrahim Raza">
                     </div>
                 </div>
             </div>
@@ -210,6 +211,39 @@
                 </div>
             </div>
         </section>
+
+        <section class="recommendations" id="recommendations">
+            <h2 class="heading">My <span>Recommendations</span></h2>
+            <div class="recommendations-container" id="recommendationsContainer">
+                <div class="recommendation-box">
+                    <p class="rec-text">Ibrahim is a dedicated developer who consistently delivers clean,
+                        well-structured code. Great to work with on team projects."</p>
+                    <h4 class="rec-author">Abdul Hanan , Project Teamate</h4>
+                </div>
+                <div class="recommendation-box">
+                    <p class="rec-text">"His grasp of Spring Boot and REST API design stood out during our capstone
+                        project. Reliable and detail-oriented."</p>
+                    <h4 class="rec-author">Ali Raza , University Fellow</h4>
+                </div>
+                <div class="recommendation-box">
+                    <p class="rec-text">"Quick learner, communicates well, and always meets deadlines. Would recommend
+                        him for any full-stack role."</p>
+                    <h4 class="rec-author">Zaviyar , Supervisor</h4>
+                </div>
+            </div>
+
+            <h3 class="rec-form-heading">Leave a Recommendation</h3>
+            <form class="recommendation-form" id="recommendationForm">
+                <div class="form-row">
+                    <input type="text" id="recName" placeholder="Your Name" required>
+                </div>
+                <textarea id="recText" placeholder="Write your recommendation..." required></textarea>
+                <button type="submit">Submit Recommendation</button>
+            </form>
+
+            <div id="popupMessage" class="popup-message">Recommendation submitted successfully!</div>
+
+        </section>
     </main>
 
     <footer class="contact" id="contact">
@@ -249,6 +283,8 @@
             </div>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
