@@ -20,7 +20,7 @@ A personal portfolio website built with **React** and **Vite**, converted from a
 
 ## Project Structure
 
-\`\`\`
+```
 portfolio-react/
 ├── public/
 │   └── assets/
@@ -44,14 +44,14 @@ portfolio-react/
 ├── vite.config.js
 ├── eslint.config.js
 └── README.md
-\`\`\`
+```
 
 ## Getting Started
 
-\`\`\`bash
+```bash
 npm install
 npm run dev
-\`\`\`
+```
 
 ## Author
 
