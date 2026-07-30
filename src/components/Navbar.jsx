@@ -1,39 +1,45 @@
-import { useState } from 'react';
+import { useState, useEffect } from "react";
 
 function Navbar({ links, darkMode, toggleTheme }) {
     const [isOpen, setIsOpen] = useState(false);
 
-    const toggleMenu = () => setIsOpen(!isOpen);
+    const toggleMenu = () => setIsOpen((prev) => !prev);
     const closeMenu = () => setIsOpen(false);
 
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 768) {
+                setIsOpen(false);
+            }
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
     return (
-        <header className="header">
-            <nav className="fixed left-0 top-0 w-full z-[100] bg-bg-main
-            flex justify-between items-center flex-nowrap gap-5
-            px-[6%] py-[25px]
-            max-lg:px-[5%] max-lg:py-5
-            max-[576px]:px-[5%] max-[576px]:py-[15px]">
+        <header className="fixed top-0 left-0 w-full z-50">
+            <nav className="bg-bg-main/90 backdrop-blur-lg border-b border-white/10 shadow-lg">
+                <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-20 flex items-center justify-between">
 
-                <a href="#home" className="flex items-center gap-2 font-medium text-[26px] whitespace-nowrap shrink-0 group">
-                    <i className='bx bx-home-alt transition-transform duration-300 group-hover:scale-[1.15] group-hover:text-[#7cf03d]'></i>
-                    Muhammad Ibrahim Raza
-                </a>
+                    {/* Logo */}
+                    <a href="#home" className="group">
+                        <span className="text-xl sm:text-2xl font-semibold transition group-hover:text-[#7cf03d]">
+                            Muhammad Ibrahim Raza
+                        </span>
+                    </a>
 
-                <div className="flex items-center gap-4 shrink-0">
-                    <ul className={`flex items-center gap-6 shrink-0
-               max-[576px]:flex-col max-[576px]:absolute max-[576px]:top-full max-[576px]:left-0
-               max-[576px]:w-full max-[576px]:bg-bg-main max-[576px]:py-5
-               max-[576px]:transition-all max-[576px]:duration-300
-               ${isOpen ? 'max-[576px]:flex' : 'max-[576px]:hidden'}`}>
-
+                    {/* Desktop Menu */}
+                    <ul className="hidden md:flex items-center gap-8">
                         {links.map((link) => (
-                            <li key={link.label} className="list-none">
+                            <li key={link.label}>
                                 <a
                                     href={link.href}
-                                    onClick={closeMenu}
-                                    className="text-[17px] font-medium whitespace-nowrap transition-all duration-300
-                    hover:text-[#7cf03d] hover:underline
-                    hover:[text-shadow:0_0_0.4px_currentColor,0_0_0.4px_currentColor]"
+                                    className="relative font-medium transition hover:text-[#7cf03d]
+                  after:absolute after:left-0 after:-bottom-1 after:h-[2px]
+                  after:w-0 after:bg-[#7cf03d] after:transition-all
+                  hover:after:w-full"
                                 >
                                     {link.label}
                                 </a>
@@ -41,18 +47,60 @@ function Navbar({ links, darkMode, toggleTheme }) {
                         ))}
                     </ul>
 
-                    <button onClick={toggleTheme} className="text-[22px] text-white transition-colors duration-300 hover:text-[#7cf03d] shrink-0" aria-label="Toggle theme">
-                        <i className={darkMode ? 'bx bx-sun' : 'bx bx-moon'}></i>
-                    </button>
+                    {/* Buttons */}
+                    <div className="flex items-center gap-3">
 
-                    <button
-                        onClick={toggleMenu}
-                        className="hidden max-[576px]:block text-[26px] text-[#7cf03d] z-[110] shrink-0"
-                        aria-label="Toggle menu"
-                    >
-                        <i className={isOpen ? 'bx bx-x' : 'bx bx-menu'}></i>
-                    </button>
+                        {/* Theme Button */}
+                        <button
+                            onClick={toggleTheme}
+                            aria-label="Toggle Theme"
+                            className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/10 transition"
+                        >
+                            <i className={`text-xl ${darkMode ? "bx bx-sun" : "bx bx-moon"}`} />
+                        </button>
+
+                        {/* Hamburger */}
+                        <button
+                            onClick={toggleMenu}
+                            aria-label="Toggle Menu"
+                            aria-expanded={isOpen}
+                            className="md:hidden w-10 h-10 rounded-full flex items-center justify-center bg-[#171b24] hover:bg-[#222938] transition"
+                        >
+                            <i
+                                className={`text-2xl text-[#7cf03d] ${isOpen ? "bx bx-x" : "bx bx-menu"
+                                    }`}
+                            />
+                        </button>
+
+                    </div>
                 </div>
+
+                {/* Mobile Menu */}
+                <div
+                    className={`md:hidden absolute left-4 right-4 top-[90px]
+          rounded-2xl border border-white/10
+          bg-[#10141d]/95 backdrop-blur-xl shadow-2xl
+          transition-all duration-300
+          ${isOpen
+                            ? "opacity-100 translate-y-0 visible"
+                            : "opacity-0 -translate-y-4 invisible"
+                        }`}
+                >
+                    <ul className="flex flex-col py-3">
+                        {links.map((link) => (
+                            <li key={link.label}>
+                                <a
+                                    href={link.href}
+                                    onClick={closeMenu}
+                                    className="block px-6 py-4 text-center font-medium transition hover:text-[#7cf03d] hover:bg-white/5"
+                                >
+                                    {link.label}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
             </nav>
         </header>
     );

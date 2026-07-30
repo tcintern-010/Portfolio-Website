@@ -2,7 +2,6 @@ export const navLinks = [
   { label: "About Me", href: "#home" },
   { label: "Skills", href: "#skills" },
   { label: "Project Details", href: "#projects" },
-  { label: "Recommendations", href: "#recommendations" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -55,21 +54,6 @@ export const projectsData = [
     description: "A console-based banking application supporting account management and transactions via command-line interface.",
     tags: ["Java", "JDBC", "MySQL"],
     github: "https://github.com/MIbrahimRaza/CLIBasedBasicBankingSystem",
-  },
-];
-
-export const recommendationsData = [
-  {
-    text: `Ibrahim is a dedicated developer who consistently delivers clean, well-structured code. Great to work with on team projects."`,
-    author: "Abdul Hanan , Project Teamate",
-  },
-  {
-    text: `"His grasp of Spring Boot and REST API design stood out during our capstone project. Reliable and detail-oriented."`,
-    author: "Ali Raza , University Fellow",
-  },
-  {
-    text: `"Quick learner, communicates well, and always meets deadlines. Would recommend him for any full-stack role."`,
-    author: "Zaviyar , Supervisor",
   },
 ];
 
